@@ -11,7 +11,7 @@ export interface Todo {
 class TodoService {
   getAllTodos() {
     const controller = new AbortController();
-    const request = apiClient.get<Todo[]>("/todo", {
+    const request = apiClient.get<Todo[]>("/todolist/1/todos", {
       signal: controller.signal,
     });
 
@@ -19,15 +19,15 @@ class TodoService {
   }
 
   addTodo(todo: Todo) {
-    return apiClient.post("/todo/", todo);
+    return apiClient.post("/todolist/1/todos/", todo);
   }
 
   deleteTodo(id: string) {
-    return apiClient.delete("/todo/" + id);
+    return apiClient.delete("/todolist/1/todos/" + id);
   }
 
   editTodo(todo: Todo) {
-    return apiClient.put("/todo/" + todo.id, todo);
+    return apiClient.put("/todolist/1/todos/" + todo.id, todo);
   }
 }
 

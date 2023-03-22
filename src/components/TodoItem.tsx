@@ -8,13 +8,6 @@ interface Props {
 }
 
 const TodoItem = ({ todo, handleEdit, handleDelete }: Props) => {
-  const onEdit = () => {
-    handleEdit(todo);
-  };
-
-  const onDelete = () => {
-    handleDelete(todo);
-  };
   return (
     <div>
       <div className="w-full relative my-2">
@@ -29,14 +22,14 @@ const TodoItem = ({ todo, handleEdit, handleDelete }: Props) => {
 
           <div className="flex flex-col gap-1">
             <button
-              onClick={onEdit}
+              onClick={() => handleEdit(todo)}
               className="bg-blue-500 text-white rounded-xl  hover:bg-green-500 focus:outline-none py-2 px-4 flex items-center justify-center"
             >
               {todo.done ? "Done" : "Did it!"}
             </button>
 
             <button
-              onClick={onDelete}
+              onClick={() => handleDelete(todo)}
               className="  bg-red-500 text-white rounded-xl  hover:bg-red-400 focus:outline-none py-2 px-4 flex items-center justify-center"
             >
               Remove

@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { TodoFilterByEnum } from "../App";
 import useTodos from "../hooks/useTodos";
 import todoService, { Todo } from "../services/todoService";
 import TodoItem from "./TodoItem";
 
-const TodoList = () => {
+interface Props {
+  selectedFilter: TodoFilterByEnum;
+}
+const TodoList = ({ selectedFilter }: Props) => {
   const { todos, error, isLoading, setTodos, setError } = useTodos();
-  //   const [filteredTodos, setFilteredTodos] = useState<Todo[]>(todos);
+  const [filteredTodos, setFilteredTodos] = useState<Todo[]>();
 
-  const addTodo = () => {
+  console.log(selectedFilter);
+  const dummyTodo = {
+    title: "New Todo",
+    done: false,
+    text: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia adipisci perspiciatis id eaque quo eos?",
+    date: 846846,
+    id: uuidv4(),
+  };
+
+  const onAddTodo = (todo: Todo) => {
     const originalTodos = [...todos];
-    const newDummyTodo = {
-      title: "New Todo",
-      done: false,
-      text: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia adipisci perspiciatis id eaque quo eos?",
-      date: 846846,
-      id: uuidv4(),
-    };
 
-    setTodos([newDummyTodo, ...todos]);
+    setTodos([todo, ...todos]);
 
     todoService
-      .addTodo(newDummyTodo)
+      .addTodo(todo)
       .then(({ data: savedTodo }) => setTodos([savedTodo, ...todos]))
       .catch((err) => {
         setError(err.message);
@@ -51,18 +57,19 @@ const TodoList = () => {
     });
   };
 
-  //   const showAll = () => {
-  //     const todosToShow = [...todos];
-  //     setFilteredTodos([...todosToShow]);
-  //   };
-  //   const showDone = () => {
-  //     const todosToShow = todos.filter((todo) => todo.done);
-  //     setFilteredTodos([...todosToShow]);
-  //   };
-  //   const showPending = () => {
-  //     const todosToShow = todos.filter((todo) => !todo.done);
-  //     setFilteredTodos([...todosToShow]);
-  //   };
+  useEffect(() => {
+    setFilteredTodos(() => {
+      if (selectedFilter === "Done")
+        return todos.filter((todo) => todo.done === true);
+
+      if (selectedFilter === "Pending")
+        return todos.filter((todo) => todo.done !== true);
+
+      return todos;
+    });
+
+    console.log(filteredTodos);
+  }, [todos, selectedFilter]);
 
   return (
     <>
@@ -70,21 +77,19 @@ const TodoList = () => {
         <h1 className="text-6xl self-center font-semibold color text-white">
           TODOS
         </h1>
+
         <button
-          onClick={addTodo}
-          className="bg-green-500 text-white rounded-xl p-2 mt-5 hover:bg-indigo-400 focus:outline-none"
+          onClick={() => onAddTodo(dummyTodo)}
+          className="bg-green-500 text-white rounded-xl p-2 mt-5 hover:bg-indigo-400 focus:outline-none "
         >
           Add new todo
         </button>
-        {/* <button onClick={showAll}>Show All</button>
-        <button onClick={showDone}>Show Done</button>
-        <button onClick={showPending}>Show Pending</button> */}
 
         {error && <p>{error}</p>}
         {isLoading && <h2>Loading ...</h2>}
 
         <ul>
-          {todos.map((todo) => (
+          {filteredTodos?.map((todo) => (
             <li key={todo.id}>
               <TodoItem
                 todo={todo}
