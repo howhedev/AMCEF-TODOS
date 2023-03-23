@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { TodoFilterByEnum } from "../App";
 import useTodos from "../hooks/useTodos";
 import todoService, { Todo } from "../services/todoService";
+import FormModal from "./FormModal";
 import TodoItem from "./TodoItem";
 
 interface Props {
@@ -11,15 +12,6 @@ interface Props {
 const TodoList = ({ selectedFilter }: Props) => {
   const { todos, error, isLoading, setTodos, setError } = useTodos();
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>();
-
-  console.log(selectedFilter);
-  const dummyTodo = {
-    title: "New Todo",
-    done: false,
-    text: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia adipisci perspiciatis id eaque quo eos?",
-    date: 846846,
-    id: uuidv4(),
-  };
 
   const onAddTodo = (todo: Todo) => {
     const originalTodos = [...todos];
@@ -77,13 +69,15 @@ const TodoList = ({ selectedFilter }: Props) => {
         <h1 className="text-6xl self-center font-semibold color text-white">
           TODOS
         </h1>
-
-        <button
-          onClick={() => onAddTodo(dummyTodo)}
-          className="bg-green-500 text-white rounded-xl p-2 mt-5 hover:bg-indigo-400 focus:outline-none "
-        >
-          Add new todo
-        </button>
+        <div className="mt-5">
+          {/* <button
+            onClick={() => onAddTodo(dummyTodo)}
+            className="bg-green-500 text-white rounded-xl p-2 px-4  hover:bg-indigo-400 focus:outline-none "
+          >
+            Add new todo
+          </button> */}
+          <FormModal handleAdd={(todo) => onAddTodo(todo)} />
+        </div>
 
         {error && <p>{error}</p>}
         {isLoading && <h2>Loading ...</h2>}
