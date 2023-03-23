@@ -5,7 +5,7 @@ export interface Todo {
   title: string;
   text: string;
   done: boolean;
-  date: number;
+  date: string;
 }
 
 class TodoService {

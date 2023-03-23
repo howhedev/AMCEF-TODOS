@@ -1,9 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toValidAssetId } from "@vue/compiler-core";
 import { Fragment, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
-import { ErrorCodes } from "vue";
+
 import { z } from "zod";
 import { Todo } from "./../services/todoService";
 
@@ -13,7 +14,7 @@ const schema = z.object({
     .min(2, { message: "You need at least 2 characters for the title" }),
   text: z
     .string()
-    .max(100, { message: "Please try to describe with less than 100 chars" }),
+    .max(300, { message: "Please try to describe with less than 100 chars" }),
   date: z.coerce
     .date()
     .min(new Date(), { message: "Deadline must be in the future" }),
@@ -27,39 +28,25 @@ interface Props {
 
 export default function FormModal({ handleAdd }: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  // const [todoToAdd, setTodoToAdd] = useState<Todo>({
-  //   title: "Modal todo",
-  //   done: false,
-  //   text: "Upraceme to tu",
-  //   date: 17176,
-  //   id: uuidv4(),
-  // });
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
   const onSubmit = (data: FieldValues) => {
-    const toAdd = { ...data, id: uuidv4(), done: false };
-    setIsOpen(false);
+    const toAdd: any = {
+      ...data,
+      date: data.date.toDateString(),
+      id: uuidv4(),
+      done: false,
+    };
+
     handleAdd(toAdd);
-    console.log(toAdd);
+    setIsOpen(false);
   };
-  // function closeModal() {
-  //   setIsOpen(false);
-  // }
-
-  // function openModal() {
-  //   setIsOpen(true);
-  // }
-
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   console.log("submitted");
-  // };
 
   return (
     <>
@@ -130,7 +117,7 @@ export default function FormModal({ handleAdd }: Props) {
                       Description
                     </label>
                     <textarea {...register("text")} id="text"></textarea>
-                    {errors.title && <p>{errors.title.message}</p>}
+                    {errors.text && <p>{errors.text.message}</p>}
                     <label htmlFor="date" className="mt-2">
                       Deadline
                     </label>
@@ -143,7 +130,6 @@ export default function FormModal({ handleAdd }: Props) {
                     {errors.date && <p>{errors.date.message}</p>}
                     <div className="mt-4">
                       <button
-                        disabled={!isValid}
                         type="submit"
                         className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
@@ -151,19 +137,6 @@ export default function FormModal({ handleAdd }: Props) {
                       </button>
                     </div>
                   </form>
-
-                  {/* <div className="mt-4">
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={() => {
-                        closeModal();
-                        handleAdd(todoToAdd);
-                      }}
-                    >
-                      Add to the list
-                    </button>
-                  </div> */}
                 </Dialog.Panel>
               </Transition.Child>
             </div>

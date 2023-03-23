@@ -68,12 +68,6 @@ const TodoList = ({ selectedFilter }: Props) => {
           TODOS
         </h1>
         <div className="mt-5">
-          {/* <button
-            onClick={() => onAddTodo(dummyTodo)}
-            className="bg-green-500 text-white rounded-xl p-2 px-4  hover:bg-indigo-400 focus:outline-none "
-          >
-            Add new todo
-          </button> */}
           <FormModal handleAdd={(todo) => onAddTodo(todo)} />
         </div>
 
