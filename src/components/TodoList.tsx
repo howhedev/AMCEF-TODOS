@@ -9,9 +9,12 @@ import TodoItem from "./TodoItem";
 interface Props {
   selectedFilter: TodoFilterByEnum;
   searchQuery: string;
+  listId: number;
 }
-const TodoList = ({ selectedFilter, searchQuery }: Props) => {
-  const { todos, error, isLoading, setTodos, setError } = useTodos();
+
+const TodoList = ({ listId, selectedFilter, searchQuery }: Props) => {
+  const [needThisID] = useState(listId);
+  const { todos, error, isLoading, setTodos, setError } = useTodos(needThisID);
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>();
 
   const onAddTodo = (todo: Todo) => {
@@ -20,7 +23,7 @@ const TodoList = ({ selectedFilter, searchQuery }: Props) => {
     setTodos([todo, ...todos]);
 
     todoService
-      .addTodo(todo)
+      .addTodo(listId, todo)
       .then(({ data: savedTodo }) => setTodos([savedTodo, ...todos]))
       .catch((err) => {
         setError(err.message);
@@ -34,7 +37,7 @@ const TodoList = ({ selectedFilter, searchQuery }: Props) => {
 
     setTodos(todos.map((td) => (td.id === todo.id ? updatedTodo : td)));
 
-    todoService.editTodo(updatedTodo).catch((err) => {
+    todoService.editTodo(listId, updatedTodo).catch((err) => {
       setError(err.message);
       setTodos(originalTodos);
     });
@@ -44,7 +47,7 @@ const TodoList = ({ selectedFilter, searchQuery }: Props) => {
     const originalTodos = [...todos];
     setTodos(todos.filter((td) => td.id !== todo.id));
 
-    todoService.deleteTodo(todo.id).catch((err) => {
+    todoService.deleteTodo(listId, todo.id).catch((err) => {
       setError(err.message);
       setTodos(originalTodos);
     });

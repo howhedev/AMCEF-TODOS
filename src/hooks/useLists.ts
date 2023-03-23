@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 import { CanceledError } from "../services/apiClient";
-import todoService, { Todo } from "../services/todoService";
+import listService, { List } from "../services/listService";
 
-const useTodos = (listId: number) => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+const useLists = () => {
+  const [lists, setLists] = useState<List[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  console.log(listId);
   useEffect(() => {
     setLoading(true);
-    const { request, cancel } = todoService.getAllTodos(listId);
+    const { request, cancel } = listService.getAllLists();
 
     request
       .then((res) => {
-        setTodos(res.data);
+        setLists(res.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -26,7 +25,7 @@ const useTodos = (listId: number) => {
     return () => cancel();
   }, []);
 
-  return { todos, error, isLoading, setTodos, setError };
+  return { lists, error, isLoading, setLists, setError };
 };
 
-export default useTodos;
+export default useLists;
