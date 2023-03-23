@@ -72,7 +72,7 @@ const TodoList = ({ listId, selectedFilter, searchQuery }: Props) => {
     <>
       <div className="flex flex-col">
         <h1 className="text-6xl self-center font-semibold color text-white">
-          TODOS
+          {selectedFilter} Todos
         </h1>
         <div className="mt-5">
           <FormModal handleAdd={(todo) => onAddTodo(todo)} />
