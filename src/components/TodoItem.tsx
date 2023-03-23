@@ -11,7 +11,6 @@ interface Props {
 const TodoItem = ({ todo, handleEdit, handleDelete }: Props) => {
   const [parsedDate, setParsedDate] = useState("default");
 
-  console.log(typeof todo.date);
   useEffect(() => {
     const parsedDate = todo.date
       .substring(todo.date.indexOf(" ") + 1)
@@ -33,8 +32,8 @@ const TodoItem = ({ todo, handleEdit, handleDelete }: Props) => {
             <div className="flex flex-col mt-10 ">
               <label className="text-slate-600 text-xs">Deadline</label>
               <p
-                className={`font-bold text-blue-500 ${
-                  todo.done ? "line-through" : ""
+                className={`font-bold text-blue-500  ${
+                  todo.done ? "line-through " : ""
                 }`}
               >
                 {parsedDate}

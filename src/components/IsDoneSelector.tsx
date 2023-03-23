@@ -22,9 +22,9 @@ export default function IsDoneSelector({ onSelectDone }: Props) {
   };
 
   return (
-    <Menu as="div" className="text-right mx-auto">
+    <Menu as="div" className="relative text-left w-1/4">
       <div>
-        <Menu.Button className="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+        <Menu.Button className="inline-flex justify-center gap-x-1.5 rounded-md w-full bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
           {selected}
           <ChevronDownIcon
             className="-mr-1 h-5 w-5 text-gray-400"
@@ -42,7 +42,7 @@ export default function IsDoneSelector({ onSelectDone }: Props) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute z-10 mt-2 w-full origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (

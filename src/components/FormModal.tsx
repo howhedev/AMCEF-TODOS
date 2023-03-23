@@ -97,37 +97,49 @@ export default function FormModal({ handleAdd }: Props) {
                     New Todo
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">Fill all the fields</p>
+                    <p className="text-sm text-gray-500">
+                      Add title, description and deadline
+                    </p>
                   </div>
                   <form
                     onSubmit={handleSubmit(onSubmit)}
-                    className="flex flex-col"
+                    className="flex flex-col gap-5"
                   >
-                    <label htmlFor="title" className="mt-2">
-                      Title
-                    </label>
-                    <input
-                      {...register("title")}
-                      id="title"
-                      type="text"
-                      className="bg-gray-200"
-                    />
-                    {errors.title && <p>{errors.title.message}</p>}
-                    <label htmlFor="text" className="mt-2">
-                      Description
-                    </label>
-                    <textarea {...register("text")} id="text"></textarea>
-                    {errors.text && <p>{errors.text.message}</p>}
-                    <label htmlFor="date" className="mt-2">
-                      Deadline
-                    </label>
-                    <input
-                      {...register("date")}
-                      id="date"
-                      type="date"
-                      className="form-input"
-                    />
-                    {errors.date && <p>{errors.date.message}</p>}
+                    <div className="mt-10">
+                      <label htmlFor="title" className="mt-2">
+                        Title
+                      </label>
+                      <input
+                        {...register("title")}
+                        id="title"
+                        type="text"
+                        className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
+                      />
+                      {errors.title && <p>{errors.title.message}</p>}
+                    </div>
+                    <div>
+                      <label htmlFor="text" className="mt-2">
+                        Description
+                      </label>
+                      <textarea
+                        {...register("text")}
+                        id="text"
+                        className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
+                      ></textarea>
+                      {errors.text && <p>{errors.text.message}</p>}
+                    </div>
+                    <div>
+                      <label htmlFor="date" className="mt-2">
+                        Deadline
+                      </label>
+                      <input
+                        {...register("date")}
+                        id="date"
+                        type="date"
+                        className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
+                      />
+                      {errors.date && <p>{errors.date.message}</p>}
+                    </div>
                     <div className="mt-4">
                       <button
                         type="submit"

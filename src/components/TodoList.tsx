@@ -8,8 +8,9 @@ import TodoItem from "./TodoItem";
 
 interface Props {
   selectedFilter: TodoFilterByEnum;
+  searchQuery: string;
 }
-const TodoList = ({ selectedFilter }: Props) => {
+const TodoList = ({ selectedFilter, searchQuery }: Props) => {
   const { todos, error, isLoading, setTodos, setError } = useTodos();
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>();
 
@@ -51,19 +52,22 @@ const TodoList = ({ selectedFilter }: Props) => {
 
   useEffect(() => {
     setFilteredTodos(() => {
+      let output: Todo[] = todos;
       if (selectedFilter === "Done")
-        return todos.filter((todo) => todo.done === true);
+        output = todos.filter((todo) => todo.done === true);
 
       if (selectedFilter === "Pending")
-        return todos.filter((todo) => todo.done !== true);
+        output = todos.filter((todo) => todo.done !== true);
 
-      return todos;
+      return output.filter((todo) =>
+        todo.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
     });
-  }, [todos, selectedFilter]);
+  }, [todos, selectedFilter, searchQuery]);
 
   return (
     <>
-      <div className="flex flex-col p-5">
+      <div className="flex flex-col">
         <h1 className="text-6xl self-center font-semibold color text-white">
           TODOS
         </h1>
