@@ -59,8 +59,6 @@ const TodoList = ({ selectedFilter }: Props) => {
 
       return todos;
     });
-
-    console.log(filteredTodos);
   }, [todos, selectedFilter]);
 
   return (
