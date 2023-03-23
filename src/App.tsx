@@ -24,16 +24,17 @@ function App() {
 
   return (
     <>
-      <button
-        onClick={() => setListId(0)}
-        className="absolute left-5 top-20 bg-blue-500 text-white rounded-xl  hover:bg-green-500 focus:outline-none py-2 px-4 flex items-center justify-center"
-      >
-        Go back to lists
-      </button>
       <div className="bg-sky-900 p-4 min-h-screen">
-        {!listId && <ListSelection onSelectList={onSelectList} />}
-        {listId && (
+        {listId === 0 ? (
+          <ListSelection onSelectList={onSelectList} />
+        ) : (
           <>
+            <button
+              onClick={() => setListId(0)}
+              className="absolute left-5 top-20 bg-blue-500 text-white rounded-xl  hover:bg-green-500 focus:outline-none py-2 px-4 flex items-center justify-center"
+            >
+              Go back to lists
+            </button>
             <div className="flex gap-5 mb-10">
               <SearchInput
                 onSearch={(searchText) => setSearchQuery(searchText)}

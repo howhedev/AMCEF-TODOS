@@ -35,7 +35,7 @@ const ListSelection = ({ onSelectList }: Props) => {
   return (
     <div className="flex gap-2 justify-center align-middle">
       {error && <p>{error}</p>}
-      {isLoading && <h2>Loading ...</h2>}{" "}
+      {isLoading && <h2>Loading ...</h2>}
       {lists.map((list) => (
         <button
           key={list.id}
