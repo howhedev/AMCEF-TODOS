@@ -1,7 +1,7 @@
 import apiClient from "./apiClient";
 
 export interface List {
-  id: number;
+  id: string;
   title: string;
 }
 
@@ -19,7 +19,7 @@ class ListService {
     return apiClient.post(`/todolist/`, list);
   }
 
-  deleteList(id: number) {
+  deleteList(id: string) {
     return apiClient.delete(`/todolist/` + id);
   }
 
