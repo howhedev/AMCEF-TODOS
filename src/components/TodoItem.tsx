@@ -32,7 +32,13 @@ const TodoItem = ({ todo, handleEdit, handleDelete }: Props) => {
             <p>{todo.text}</p>
             <div className="flex flex-col mt-10 ">
               <label className="text-slate-600 text-xs">Deadline</label>
-              <p className="font-bold text-blue-500">{parsedDate}</p>
+              <p
+                className={`font-bold text-blue-500 ${
+                  todo.done ? "line-through" : ""
+                }`}
+              >
+                {parsedDate}
+              </p>
             </div>
           </div>
 
@@ -41,7 +47,7 @@ const TodoItem = ({ todo, handleEdit, handleDelete }: Props) => {
               onClick={() => handleEdit(todo)}
               className="bg-blue-500 text-white rounded-xl  hover:bg-green-500 focus:outline-none py-2 px-4 flex items-center justify-center"
             >
-              {todo.done ? "Need Fixing" : "Mark as done!"}
+              {todo.done ? "Need Fixing" : "Mark as done"}
             </button>
 
             <button
