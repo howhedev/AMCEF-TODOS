@@ -33,13 +33,13 @@ const ListSelection = ({ onSelectList }: Props) => {
   };
 
   return (
-    <div className="flex gap-2 justify-center align-middle">
+    <div className="flex flex-col gap-2 justify-center absolute inset-0 sm:top-1/2 p-5 sm:flex-row">
       {error && <p>{error}</p>}
       {isLoading && <h2>Loading ...</h2>}
       {lists.map((list) => (
         <button
           key={list.id}
-          className="bg-slate-100  h-fit  p-5 rounded-xl"
+          className="bg-slate-100 h-fit w-full p-5 rounded-xl"
           onClick={() => onSelectList(parseInt(list.id))}
         >
           {list.title}
@@ -47,7 +47,7 @@ const ListSelection = ({ onSelectList }: Props) => {
       ))}
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
-          className="bg-slate-100  h-fit  p-5 rounded-xl"
+          className="bg-slate-100 h-fit w-full p-5 rounded-xl text-center sm:w-max"
           ref={listRef}
           type="text"
           placeholder="Add new list"
