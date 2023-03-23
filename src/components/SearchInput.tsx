@@ -8,7 +8,7 @@ const SearchInput = ({ onSearch }: Props) => {
   return (
     <form
       className="w-3/4"
-      onSubmit={(e) => {
+      onChange={(e) => {
         e.preventDefault();
         if (ref.current) onSearch(ref.current.value);
       }}
