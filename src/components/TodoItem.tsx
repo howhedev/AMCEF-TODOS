@@ -24,7 +24,9 @@ const TodoItem = ({ todo, handleEdit, handleDelete }: Props) => {
       <div className="w-full relative my-2">
         <div
           className={`w-full flex justify-between  rounded-xl shadow-md
-         px-6 py-6 ${todo.done ? "bg-green-300" : "bg-gray-50"}`}
+         px-6 py-6 ${
+           todo.done ? "bg-green-400 text-neutral-50" : "bg-gray-50"
+         }`}
         >
           <div className="flex flex-col max-w-xl">
             <h2 className="text-xl font-bold">{todo.title}</h2>
@@ -44,14 +46,14 @@ const TodoItem = ({ todo, handleEdit, handleDelete }: Props) => {
           <div className="flex flex-col gap-1">
             <button
               onClick={() => handleEdit(todo)}
-              className="bg-blue-500 text-white rounded-xl  hover:bg-green-500 focus:outline-none py-2 px-4 flex items-center justify-center"
+              className="bg-cyan-500 text-white font-bold hover:opacity-80 rounded-xl py-2 px-4 flex items-center justify-center focus:outline-none focus-visible:ring focus-visible:ring-cyan-500 focus-visible:ring-opacity-75"
             >
               {todo.done ? "Need Fixing" : "Mark as done"}
             </button>
 
             <button
               onClick={() => handleDelete(todo)}
-              className="  bg-red-500 text-white rounded-xl  hover:bg-red-400 focus:outline-none py-2 px-4 flex items-center justify-center"
+              className="  bg-red-600 text-white rounded-xl  hover:opacity-80 py-2 px-4 flex items-center justify-center focus:outline-none focus-visible:ring focus-visible:ring-red-500 focus-visible:ring-opacity-75"
             >
               Remove
             </button>

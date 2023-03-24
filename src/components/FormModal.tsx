@@ -54,7 +54,7 @@ export default function FormModal({ handleAdd }: Props) {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-green-500 text-white rounded-xl p-2 px-4  hover:bg-indigo-400 focus:outline-none"
+          className="bg-cyan-500 text-white font-bold rounded-xl p-2 px-4  hover:bg-teal-500 focus:outline-none"
         >
           Add new Todo
         </button>
@@ -98,7 +98,7 @@ export default function FormModal({ handleAdd }: Props) {
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Add title, description and deadline
+                      *Add title, description and deadline
                     </p>
                   </div>
                   <form
@@ -106,44 +106,53 @@ export default function FormModal({ handleAdd }: Props) {
                     className="flex flex-col gap-5"
                   >
                     <div className="mt-10">
-                      <label htmlFor="title" className="mt-2">
-                        Title
+                      <label
+                        htmlFor="title"
+                        className="mt-2 text-sm opacity-60"
+                      >
+                        Title*
                       </label>
                       <input
                         {...register("title")}
                         id="title"
                         type="text"
-                        className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
+                        className="flex w-full justify-between rounded-lg bg-cyan-50 px-4 py-2 text-left text-sm font-medium text-cyan-900 hover:bg-cyan-200 focus:outline-none focus-visible:ring focus-visible:ring-cyan-500 focus-visible:ring-opacity-75 "
                       />
-                      {errors.title && <p>{errors.title.message}</p>}
+                      {errors.title && (
+                        <p className="text-red-600">{errors.title.message}</p>
+                      )}
                     </div>
                     <div>
-                      <label htmlFor="text" className="mt-2">
-                        Description
+                      <label htmlFor="text" className="mt-2 text-sm opacity-60">
+                        Description*
                       </label>
                       <textarea
                         {...register("text")}
                         id="text"
-                        className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
+                        className="flex w-full justify-between rounded-lg bg-cyan-50 px-4 py-2 text-left text-sm font-medium text-cyan-900 hover:bg-cyan-200 focus:outline-none focus-visible:ring focus-visible:ring-cyan-500 focus-visible:ring-opacity-75"
                       ></textarea>
-                      {errors.text && <p>{errors.text.message}</p>}
+                      {errors.text && (
+                        <p className="text-red-600"> {errors.text.message}</p>
+                      )}
                     </div>
                     <div>
-                      <label htmlFor="date" className="mt-2">
-                        Deadline
+                      <label htmlFor="date" className="mt-2 text-sm opacity-60">
+                        Deadline*
                       </label>
                       <input
                         {...register("date")}
                         id="date"
                         type="date"
-                        className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
+                        className="flex w-full justify-between rounded-lg bg-cyan-50 px-4 py-2 text-left text-sm font-medium text-cyan-900 hover:bg-cyan-200 focus:outline-none focus-visible:ring focus-visible:ring-cyan-500 focus-visible:ring-opacity-75 "
                       />
-                      {errors.date && <p>{errors.date.message}</p>}
+                      {errors.date && (
+                        <p className="text-red-600">{errors.date.message}</p>
+                      )}
                     </div>
                     <div className="mt-4">
                       <button
                         type="submit"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-sky-400 font-bold px-4 py-2 text-sm  text-white hover:bg-sky-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-800 focus-visible:ring-offset-2"
                       >
                         Add to the list
                       </button>

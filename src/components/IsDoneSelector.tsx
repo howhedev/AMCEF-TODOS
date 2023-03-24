@@ -42,7 +42,7 @@ export default function IsDoneSelector({ onSelectDone }: Props) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute z-10 mt-2 w-full origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute z-10 mt-2 w-full origin-top-left rounded-md bg-white focus:outline-none focus-visible:ring focus-visible:ring-cyan-500 focus-visible:ring-opacity-75">
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
@@ -50,7 +50,7 @@ export default function IsDoneSelector({ onSelectDone }: Props) {
                   onClick={() => handleSelect(TodoFilterByEnum.all)}
                   href="#"
                   className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    active ? "bg-cyan-200 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >
@@ -64,7 +64,7 @@ export default function IsDoneSelector({ onSelectDone }: Props) {
                   onClick={() => handleSelect(TodoFilterByEnum.done)}
                   href="#"
                   className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    active ? "bg-cyan-200 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >
@@ -78,7 +78,7 @@ export default function IsDoneSelector({ onSelectDone }: Props) {
                   onClick={() => handleSelect(TodoFilterByEnum.pending)}
                   href="#"
                   className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    active ? "bg-cyan-200 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >

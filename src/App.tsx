@@ -24,18 +24,18 @@ function App() {
 
   return (
     <>
-      <div className="bg-sky-900 p-4 min-h-screen">
+      <div className="bg-gradient-to-r from-cyan-800 to-sky-800 p-4 min-h-screen text-gray-900">
         {listId === 0 ? (
           <ListSelection onSelectList={onSelectList} />
         ) : (
           <>
-            <button
-              onClick={() => setListId(0)}
-              className="absolute left-5 top-20 bg-blue-500 text-white rounded-xl  hover:bg-green-500 focus:outline-none py-2 px-4 flex items-center justify-center"
-            >
-              Go back to lists
-            </button>
             <div className="flex gap-5 mb-10">
+              <button
+                onClick={() => setListId(0)}
+                className="bg-cyan-500 text-white font-semibold rounded-xl hover:opacity-80 py-2 px-4 flex items-center justify-center focus:outline-none focus-visible:ring focus-visible:ring-cyan-500 focus-visible:ring-opacity-75"
+              >
+                List Selection
+              </button>
               <SearchInput
                 onSearch={(searchText) => setSearchQuery(searchText)}
               />
