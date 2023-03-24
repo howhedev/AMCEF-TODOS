@@ -35,7 +35,6 @@ const ListSelection = ({ onSelectList }: Props) => {
 
   return (
     <div className="flex flex-col gap-2 justify-center absolute inset-0 sm:top-1/2 p-5 sm:flex-row">
-      {error && <p>{error}</p>}
       {isLoading && (
         <div role="status">
           <svg
@@ -56,6 +55,11 @@ const ListSelection = ({ onSelectList }: Props) => {
           </svg>
           <span className="sr-only">Loading...</span>
         </div>
+      )}
+      {error && (
+        <p className="h-fit w-full p-5 rounded-xl bg-red-500 text-white font-bold ">
+          {error}
+        </p>
       )}
       {lists.map((list) => (
         <button

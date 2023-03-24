@@ -79,7 +79,11 @@ const TodoList = ({ listId, selectedFilter, searchQuery }: Props) => {
           <FormModal handleAdd={(todo) => onAddTodo(todo)} />
         </div>
 
-        {error && <p>{error}</p>}
+        {error && (
+          <p className="h-fit w-full p-5 rounded-xl bg-red-500 text-white font-bold ">
+            {error}
+          </p>
+        )}
         {isLoading && (
           <div role="status" className="mx-auto mt-6">
             <svg
