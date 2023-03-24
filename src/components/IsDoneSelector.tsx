@@ -3,12 +3,12 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Fragment, useState } from "react";
 import { TodoFilterByEnum } from "../App";
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(" ");
-}
-
 interface Props {
   onSelectDone: (done: TodoFilterByEnum) => void;
+}
+
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function IsDoneSelector({ onSelectDone }: Props) {

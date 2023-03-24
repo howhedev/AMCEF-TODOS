@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useEffect, useState } from "react";
+
 import { TodoFilterByEnum } from "../App";
 import useTodos from "../hooks/useTodos";
 import todoService, { Todo } from "../services/todoService";
@@ -45,6 +45,7 @@ const TodoList = ({ listId, selectedFilter, searchQuery }: Props) => {
 
   const onDeleteTodo = (todo: Todo) => {
     const originalTodos = [...todos];
+
     setTodos(todos.filter((td) => td.id !== todo.id));
 
     todoService.deleteTodo(listId, todo.id).catch((err) => {

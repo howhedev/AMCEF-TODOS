@@ -1,5 +1,4 @@
-import { parse } from "@vue/compiler-dom";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Todo } from "./../services/todoService";
 
 interface Props {

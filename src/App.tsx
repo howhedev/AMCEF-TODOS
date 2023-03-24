@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import IsDoneSelector from "./components/IsDoneSelector";
 import ListSelection from "./components/ListSelection";
@@ -18,15 +18,11 @@ function App() {
     TodoFilterByEnum.all
   );
 
-  const onSelectList = (id: number) => {
-    setListId(id);
-  };
-
   return (
     <>
       <div className="bg-gradient-to-r from-cyan-800 to-sky-800 p-4 min-h-screen text-gray-900">
         {listId === 0 ? (
-          <ListSelection onSelectList={onSelectList} />
+          <ListSelection onSelectList={(id) => setListId(id)} />
         ) : (
           <>
             <div className="flex gap-5 mb-10">
