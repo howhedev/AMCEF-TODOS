@@ -10,9 +10,15 @@ interface Props {
   selectedFilter: TodoFilterByEnum;
   searchQuery: string;
   listId: number;
+  listTitle: string;
 }
 
-const TodoList = ({ listId, selectedFilter, searchQuery }: Props) => {
+const TodoList = ({
+  listTitle,
+  listId,
+  selectedFilter,
+  searchQuery,
+}: Props) => {
   const [needThisID] = useState(listId);
   const { todos, error, isLoading, setTodos, setError } = useTodos(needThisID);
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>();
@@ -73,7 +79,7 @@ const TodoList = ({ listId, selectedFilter, searchQuery }: Props) => {
     <>
       <div className="flex flex-col">
         <h1 className="text-6xl self-center font-semibold color text-white">
-          {selectedFilter} Todos
+          {selectedFilter} {listTitle} Todos
         </h1>
         <div className="mt-5">
           <FormModal handleAdd={(todo) => onAddTodo(todo)} />

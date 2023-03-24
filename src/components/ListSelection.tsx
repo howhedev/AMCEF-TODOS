@@ -3,8 +3,12 @@ import { v4 as uuidv4 } from "uuid";
 import useLists from "../hooks/useLists";
 import listService, { List } from "../services/listService";
 
+type selectedList = {
+  listId: number;
+  listTitle: string;
+};
 interface Props {
-  onSelectList: (id: number) => void;
+  onSelectList: (selectedList: selectedList) => void;
 }
 
 const ListSelection = ({ onSelectList }: Props) => {
@@ -65,7 +69,12 @@ const ListSelection = ({ onSelectList }: Props) => {
         <button
           key={list.id}
           className="h-fit w-full p-5 rounded-xl bg-cyan-500 text-white font-bold hover:opacity-90 focus:outline-none focus-visible:ring focus-visible:ring-cyan-500 focus-visible:ring-opacity-75 sm:w-max"
-          onClick={() => onSelectList(parseInt(list.id))}
+          onClick={() =>
+            onSelectList({
+              listId: parseInt(list.id),
+              listTitle: list.title,
+            })
+          }
         >
           {list.title}
         </button>

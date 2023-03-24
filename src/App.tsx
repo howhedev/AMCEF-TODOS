@@ -13,6 +13,7 @@ export enum TodoFilterByEnum {
 
 function App() {
   const [listId, setListId] = useState(0);
+  const [listTitle, setListTitle] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter, setSelectedFilter] = useState<TodoFilterByEnum>(
     TodoFilterByEnum.all
@@ -22,7 +23,12 @@ function App() {
     <>
       <div className="bg-gradient-to-r from-cyan-800 to-sky-800 p-4 min-h-screen text-gray-900">
         {listId === 0 ? (
-          <ListSelection onSelectList={(id) => setListId(id)} />
+          <ListSelection
+            onSelectList={(selectedList) => {
+              setListId(selectedList.listId);
+              setListTitle(selectedList.listTitle);
+            }}
+          />
         ) : (
           <>
             <div className="flex gap-5 mb-10">
@@ -40,6 +46,7 @@ function App() {
               />
             </div>
             <TodoList
+              listTitle={listTitle}
               listId={listId}
               selectedFilter={selectedFilter}
               searchQuery={searchQuery}
