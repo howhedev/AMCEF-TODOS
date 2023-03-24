@@ -64,7 +64,7 @@ const ListSelection = ({ onSelectList }: Props) => {
       {lists.map((list) => (
         <button
           key={list.id}
-          className="h-fit w-full p-5 rounded-xl bg-cyan-500 text-white font-bold hover:opacity-90 focus:outline-none focus-visible:ring focus-visible:ring-cyan-500 focus-visible:ring-opacity-75"
+          className="h-fit w-full p-5 rounded-xl bg-cyan-500 text-white font-bold hover:opacity-90 focus:outline-none focus-visible:ring focus-visible:ring-cyan-500 focus-visible:ring-opacity-75 sm:w-max"
           onClick={() => onSelectList(parseInt(list.id))}
         >
           {list.title}
